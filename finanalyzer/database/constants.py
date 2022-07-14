@@ -1,0 +1,13 @@
+MAX_DATA_HISTORY_YEARS = 10
+WAIT_TIME_BETWEEN_REQUESTS = 0.
+DEFAULT_DB_FILE = "database/data/financial_data.db"
+SQL_INITIALIZE_DATABASE = "database/sql/sqlrequests.sql"
+SQL_REMOVE_REDUNDANCY = "database/sql/redundancy.sql"
+TABLE_NAMES = "namesCompanies"
+TABLE_VALUES = "valuesFinHistory"
+TABLE_FINANCIAL_DATA = "financialData"
+TEST_WEBSITE = "example.com/"
+DEFAULT_TICKER = "AAPL"  # Can be changed to any ticker - used for testing if yfinance has the data for today.
+TICKERS_CSV = "database/data/tickers.csv"
+DEFAULT_COLUMNS_HISTORY = ('Open', 'High', 'Low', 'Close')
+MAX_REQUESTS_BEFORE_PROXY_CHANGE = 600
