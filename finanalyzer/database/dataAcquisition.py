@@ -11,11 +11,8 @@ msft = yf.Ticker("MSFT")
 msft.info
 msft.history(period)
 ------------------------
-
 data = yf.download("SPY AAPL MSFT TWTR", start="2022-01-01", end="2022-05-30")
-
 data['SPY']['Close']
-
 """
 
 
