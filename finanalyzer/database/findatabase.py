@@ -20,7 +20,7 @@ class Findatabase:
         | ID | Nom | Ticker | Echange |
         -------------------------------
 
-                    data: TABLE_VALUES
+           data: TABLE_VALUES
         ----------------------------------
         | ID | Open | High | Low | Close |
         ----------------------------------

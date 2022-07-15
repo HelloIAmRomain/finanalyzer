@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/finanalyzer.iml" filepath="$PROJECT_DIR$/.idea/finanalyzer.iml" />
       <module fileurl="file://$PROJECT_DIR$/../finanalyzer-backend/.idea/finanalyzer-backend.iml" filepath="$PROJECT_DIR$/../finanalyzer-backend/.idea/finanalyzer-backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/../finanalyzer-frontend/.idea/finanalyzer-frontend.iml" filepath="$PROJECT_DIR$/../finanalyzer-frontend/.idea/finanalyzer-frontend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../finanalyzer-tests/.idea/finanalyzer-tests.iml" filepath="$PROJECT_DIR$/../finanalyzer-tests/.idea/finanalyzer-tests.iml" />
     </modules>
   </component>
 </project>

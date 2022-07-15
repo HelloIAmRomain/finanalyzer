@@ -11,10 +11,11 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/f" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/a" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/b" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/3" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/9" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.10 (finanalyzer)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="finanalyzer-tests" />
     <orderEntry type="module" module-name="finanalyzer-frontend" />
     <orderEntry type="module" module-name="finanalyzer-backend" />
   </component>
