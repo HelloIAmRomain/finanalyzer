@@ -16,7 +16,7 @@ doc/
 test-reports
 .tox/
 .env
-
+venv/
 ### Windows template
 # Windows thumbnail cache files
 Thumbs.db
