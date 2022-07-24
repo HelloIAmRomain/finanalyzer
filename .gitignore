@@ -1,4 +1,21 @@
+__pycache__/
+*.py[cod]
 .idea/
+
+.DS_Store
+.coverage*
+coverage.xml
+htmlcov/
+logs/
+main.py
+.eggs
+*.egg-info
+dist
+build
+doc/
+test-reports
+.tox/
+.env
 
 ### Windows template
 # Windows thumbnail cache files
