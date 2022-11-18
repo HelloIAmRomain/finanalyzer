@@ -1,3 +1,12 @@
+# API for the Database part of the Finanalyzer app
+#
+# See the README.md file for more information.
+#
+# Copyright (c) 2021, Romain DODET 
+# romain.dodet00@gmail.com
+# All rights reserved.
+#
+
 import sqlite3
 from sqlite3 import Error
 import yfinance as yf
@@ -90,7 +99,7 @@ Lorsque vous avez terminé, vous pouvez fermer manuellement la base de données 
         if fill_data:
             self.update_database()
 
-    def write_database(self, sql_instruction=None, script=None, n_requests=0):
+    def write_database(self, sql_instruction=None, script=None):
         feedback = None
         # if n_reques
         try:
@@ -104,13 +113,35 @@ Lorsque vous avez terminé, vous pouvez fermer manuellement la base de données 
         except Error as e:
             print(e)
         return feedback
+    
+    def read_values_from_id(self, id_ticker: int, start_date, end_date=None, element="*") -> Tuple[Tuple]: # TODO: Test this function
+        if not end_date:
+            end_date = self.today 
+        data = self.read_database(table=self.TABLE_VALUES,
+                                  element=element,
+                                  # Get values from start_date to end_date
+                                  optional=f"WHERE namesId={id_ticker} and dateValue BETWEEN '{start_date}' and '{end_date}' ORDER BY dateValue DESC")
+        return data
 
     def get_date(self, delta_days: int = 0) -> str:
         date = datetime.strftime(datetime.now() - timedelta(delta_days), format='%Y-%m-%d')
         return date
 
+    def list_tickers(self):
+        return self.read_database(table=self.TABLE_NAMES, element="ticker")
+    
+    def list_id(self):
+        return self.read_database(table=self.TABLE_NAMES, element="id")
+
     def get_ticker_from_id(self, id_ticker: int) -> str:
         data = self.read_database(table=self.TABLE_NAMES, element="ticker", optional=f"WHERE id={id_ticker}")
+        if data:
+            return data[0][0]
+        else:
+            return None   
+
+    def get_id_from_ticker(self, ticker: str) -> int:
+        data = self.read_database(table=self.TABLE_NAMES, element="id", optional=f"WHERE ticker='{ticker}'")
         if data:
             return data[0][0]
         else:
@@ -147,14 +178,13 @@ Lorsque vous avez terminé, vous pouvez fermer manuellement la base de données 
     def set_database_names(self):
         tickers, companies_names, exchange = da.get_tickers()
         for n in range(len(tickers)):
-            if self.read_database(table=self.TABLE_NAMES,
-                                  optional=f"WHERE ticker=\"{tickers[n]}\""):
+            if self.read_database(table=self.TABLE_NAMES,optional=f"WHERE ticker=\"{tickers[n]}\""):
                 # verifie si le ticker n'est pas deja présent dans la base de donnée
                 print(f"Numero {n}: {tickers[n]} est deja dans la base de donnees")
             else:
                 self.request_count()
                 if da.check_exists(tickers[n], proxy=self.proxy):
-                    print("Numero: ", n, "ticker: ", tickers[n], "added")
+                    print("Numero: ", n, "ticker: ", tickers[n], "ajoute")
                     entry = (n + 1, tickers[n], companies_names[n], exchange[n])
                     self.add_name(entry)
                 else:
@@ -187,10 +217,9 @@ Lorsque vous avez terminé, vous pouvez fermer manuellement la base de données 
             self.delete_values_table(self.TABLE_VALUES)
         if info:
             self.delete_values_table(self.TABLE_INFO)
-        tickers = self.read_database(table=self.TABLE_NAMES,
-                                     element="ticker")  # pb: on a un resultat de la forme ((a),(b),...)
+        tickers = self.read_database(table=self.TABLE_NAMES, element="ticker")  # pb: on a un resultat de la forme ((a),(b),...)
         tickers = (t[0] for t in tickers)
-        id_names = self.read_database(table=self.TABLE_NAMES, element="id")  # meme probleme
+        id_names = self.list_id
         id_names = (i[0] for i in id_names)
         for id_name in id_names:
             if history:
@@ -206,7 +235,7 @@ Lorsque vous avez terminé, vous pouvez fermer manuellement la base de données 
         > Si il n'y a pas de données, on les crée
         > Si il y a des données, on les met à jour et on supprime les anciennes
         """
-        for id_name in self.read_database(table=self.TABLE_NAMES, element="id"):
+        for id_name in self.list_id:
             id_name = id_name[0]
             last_update_info = self.check_last_update(id_ticker=id_name, table=self.TABLE_INFO)
             last_update_history = self.check_last_update(id_ticker=id_name, table=self.TABLE_VALUES)

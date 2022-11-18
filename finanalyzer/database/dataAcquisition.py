@@ -79,6 +79,7 @@ def check_exists(ticker: str, period="1m", proxy=None, start=None) -> bool:
 
 
 """
+TODO:
 --> diminuer le nombre de requetes en les regoupant
 def recive_multiple_data(tickers:str, columns:list, period="2y", interval:str ="1d", start=None, proxy=None):
     data = yf.Tickers(tickers)
@@ -90,7 +91,7 @@ def recive_multiple_data(tickers:str, columns:list, period="2y", interval:str ="
 """
 
 """
-------------------- AUTRES MODULES ----------------------------
+------------------- AUTRES MODULES possibles ----------------------------
 investpy
 nasdaqdatalink
 wallstreet
