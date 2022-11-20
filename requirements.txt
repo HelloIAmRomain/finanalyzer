@@ -6,3 +6,5 @@ numpy
 keras
 matplotlib
 scikit-learn
+requests-oauthlib
+requests
