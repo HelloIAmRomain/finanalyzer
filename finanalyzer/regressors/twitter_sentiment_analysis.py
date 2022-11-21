@@ -1,4 +1,4 @@
-# Twitter sentiment analysis for the selected tickers (takes a name of a company and returns a sentiment score)
+# Twitter sentiment analysis for the selected companies (takes a name of a company and returns a sentiment score)
 #
 # See the README.md file for more information.
 #
@@ -29,11 +29,10 @@ lemmatizer = WordNetLemmatizer()
 # Twitter API credentials
 TWITTER_API_KEY = 'TWITTER_API_KEY'
 TWITTER_API_KEY_SECRET = 'TWITTER_API_KEY_SECRET'
-TWITTER_BEARER_TOKEN = 'TWITTER_BEARER_TOKEN'
+TWITTER_BEARER_TOKEN = "TWITTER_BEARER_TOKEN"
 # Access Token and Access Token Secret (with read-only access)
 TWITTER_ACCESS_TOKEN = 'TWITTER_ACCESS_TOKEN'
 TWITTER_ACCESS_TOKEN_SECRET = 'TWITTER_ACCESS_TOKEN_SECRET'
-
 
 
 def clean_text(text):
@@ -58,6 +57,7 @@ def clean_text(text):
     text = re.sub(u"[ñ]", 'n', text)
     return text
 
+
 def translate_to_english(text):
     # Get language of the text
     language = detect(text)
@@ -65,7 +65,6 @@ def translate_to_english(text):
         # TODO: If the language is not English, translate it
         text = ""
     return text
-
 
 
 def give_sentiment_score(text_list):
@@ -92,6 +91,7 @@ def give_sentiment_score(text_list):
     # Get the mean of the compound scores
     sentiment_score = np.mean(sentiment_scores)
     return sentiment_score
+
 
 class TwitterSentimentAnalysis:
     """
