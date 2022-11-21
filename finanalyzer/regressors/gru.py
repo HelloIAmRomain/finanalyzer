@@ -342,28 +342,7 @@ input_shape = 140
 # list_topologies GRU: [[output_shape, activation, recurrent_activation], ...]
 models_topology = [
     [[140, "tanh", "sigmoid"],[70, "tanh", "sigmoid"]],
-    
-    # [[35, "relu", "sigmoid"]],
-    # [[28, "relu", "sigmoid"]],
-    # [[20, "relu", "sigmoid"]],
-    # [[14, "relu", "sigmoid"]],
-    # [[70, "tanh", "sigmoid"], [35, "tanh", "sigmoid"]],
-    # [[70, "relu", "sigmoid"], [28, "relu", "sigmoid"]],
-    # [[35, "relu", "sigmoid"], [28, "relu", "sigmoid"]],
-    # [[28, "relu", "sigmoid"], [20, "relu", "sigmoid"]],
-    # [[28, "relu", "sigmoid"], [14, "relu", "sigmoid"]],
-    # [[70, "tanh", "sigmoid"], [35, "tanh", "sigmoid"], [28, "tanh", "sigmoid"]],
-    # [[70, "relu", "sigmoid"], [35, "relu", "sigmoid"], [20, "relu", "sigmoid"]],
-    # [[70, "relu", "sigmoid"], [35, "relu", "sigmoid"], [14, "relu", "sigmoid"]],
-    # [[70, "relu", "sigmoid"], [28, "relu", "sigmoid"], [20, "relu", "sigmoid"]],
-    # [[70, "relu", "sigmoid"], [28, "relu", "sigmoid"], [14, "relu", "sigmoid"]],
-    # [[35, "relu", "sigmoid"], [28, "relu", "sigmoid"], [20, "relu", "sigmoid"]],
-    # [[35, "relu", "sigmoid"], [28, "relu", "sigmoid"], [14, "relu", "sigmoid"]],
-    # [[70, "relu", "sigmoid"], [35, "relu", "sigmoid"], [28, "relu", "sigmoid"], [20, "relu", "sigmoid"]],
-    # [[70, "relu", "sigmoid"], [35, "relu", "sigmoid"], [28, "relu", "sigmoid"], [14, "relu", "sigmoid"]],
-    # [[70, "relu", "sigmoid"], [28, "relu", "sigmoid"], [20, "relu", "sigmoid"], [14, "relu", "sigmoid"]],
-    # [[35, "relu", "sigmoid"], [28, "relu", "sigmoid"], [20, "relu", "sigmoid"], [14, "relu", "sigmoid"]],
-    # [[70, "relu", "sigmoid"], [35, "relu", "sigmoid"], [28, "relu", "sigmoid"], [20, "relu", "sigmoid"], [14, "relu", "sigmoid"]],
+
 ]
 
 
@@ -373,7 +352,7 @@ print(len(models_names))
 
 # models_topology = [[[512,"relu"],[256,"relu"],[128,"sigmoid"]]]
 
-path_BDD_folder = "../BDD/20221027_echelon/"
+path_BDD_folder = "../BDD/20221027/"
 # path_BDD_folder = "../BDD/BDD_test/"
 
 print(f"Using {path_BDD_folder} BDD for the training")
@@ -385,8 +364,10 @@ mat_files_folder = path_working_folder + "Matlab/"
 # Create the working directories
 os.mkdir(path_working_folder)
 os.mkdir(bin_files_folder)
+for files in os.listdir("Bin_Files/"):
+    shutil.copy("Bin_Files/" + files, bin_files_folder + files)
 os.mkdir(mat_files_folder)
-         
+
 # Copy the python files to directory
 shutil.copyfile("GRU_multiple_models.py", path_working_folder+"GRU_multiple_models.py")
 
